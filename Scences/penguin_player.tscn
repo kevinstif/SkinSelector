@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsojnas4impin"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerBase.gd" id="1_w7s73"]
+[ext_resource type="Texture2D" uid="uid://beequw6iumu70" path="res://Resources/Assets/Enemies/penguin.png" id="2_kgi00"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_286re"]
+size = Vector2(17, 16)
+
+[node name="PenguinPlayer" type="CharacterBody2D"]
+script = ExtResource("1_w7s73")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kgi00")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_286re")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://gm8gipv2ipi6"]
+
+[ext_resource type="Texture2D" uid="uid://cv4etecb7j2xf" path="res://Resources/Assets/Enemies/chicken.png" id="1_pya5w"]
+[ext_resource type="Texture2D" uid="uid://beequw6iumu70" path="res://Resources/Assets/Enemies/penguin.png" id="2_dup7o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5iovk"]
+
+[node name="SkinSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_horizontal_guides_ = [234.0]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 643.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5iovk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChickenOption" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ChickenOption"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 163.0
+offset_right = 233.0
+offset_bottom = 276.0
+
+[node name="Chicken" type="Sprite2D" parent="HBoxContainer/ChickenOption"]
+position = Vector2(190, 168)
+scale = Vector2(4, 4)
+texture = ExtResource("1_pya5w")
+hframes = 7
+vframes = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/ChickenOption"]
+layout_mode = 2
+offset_left = 147.0
+offset_top = 235.0
+offset_right = 226.0
+offset_bottom = 271.0
+text = "Select"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 163.0
+offset_right = 379.0
+offset_bottom = 276.0
+
+[node name="Penguin" type="Sprite2D" parent="HBoxContainer/Control"]
+position = Vector2(343, 160)
+scale = Vector2(4.46875, 4.51563)
+texture = ExtResource("2_dup7o")
+hframes = 4
+
+[node name="Button" type="Button" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 235.0
+offset_right = 379.0
+offset_bottom = 270.0
+text = "Select"
