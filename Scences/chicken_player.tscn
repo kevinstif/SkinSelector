@@ -1,21 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccxwxkpw8g2fo"]
+[gd_scene load_steps=9 format=3 uid="uid://ccxwxkpw8g2fo"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerBase.gd" id="1_rearm"]
+[ext_resource type="Script" path="res://Scripts/chicken_player.gd" id="1_piv5c"]
 [ext_resource type="Texture2D" uid="uid://cv4etecb7j2xf" path="res://Resources/Assets/Enemies/chicken.png" id="2_5wg6w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08yfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_286re"]
 size = Vector2(17, 16)
 
+[sub_resource type="Animation" id="Animation_lvoje"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_oddi2"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_8axxv"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2dq1"]
+_data = {
+"RESET": SubResource("Animation_lvoje"),
+"idle": SubResource("Animation_oddi2"),
+"walk": SubResource("Animation_8axxv")
+}
+
 [node name="ChickenPlayer" type="CharacterBody2D"]
-script = ExtResource("1_rearm")
+script = ExtResource("1_piv5c")
+
+[node name="CoinDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollectCollisionDetector" type="CollisionShape2D" parent="CoinDetector"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_08yfj")
+debug_color = Color(0.0941176, 0.647059, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_286re")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5wg6w")
 hframes = 7
 vframes = 2
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l2dq1")
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 8)
-shape = SubResource("RectangleShape2D_286re")
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="CoinDetector" to="." method="_on_coin_detector_body_entered"]

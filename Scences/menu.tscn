@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4qxyuv86p12d"]
+
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_dybrl"]
+[ext_resource type="Texture2D" uid="uid://44p1abjednk1" path="res://Resources/Assets/Deco/water_a_8frames.png" id="2_yrdfv"]
+[ext_resource type="Texture2D" uid="uid://0ixev3e4hki" path="res://Resources/Assets/Backgrounds/mountains_b.png" id="3_qfgxo"]
+[ext_resource type="Texture2D" uid="uid://mjblw56ef6yv" path="res://Resources/Assets/Backgrounds/trees.png" id="4_4pu5n"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dybrl")
+
+[node name="WaterA8Frames" type="Sprite2D" parent="."]
+position = Vector2(578, 93.5)
+scale = Vector2(4.48438, 19.5313)
+texture = ExtResource("2_yrdfv")
+
+[node name="MountainsB" type="Sprite2D" parent="."]
+position = Vector2(576, 228.5)
+scale = Vector2(4.49219, 3.53906)
+texture = ExtResource("3_qfgxo")
+
+[node name="Trees" type="Sprite2D" parent="."]
+position = Vector2(580, 325)
+scale = Vector2(4.5, 5.04688)
+texture = ExtResource("4_4pu5n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -36.0
+offset_right = 113.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Skins"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
